@@ -1,0 +1,157 @@
+goto to https://redux-toolkit.js.org/ website 
+
+
+step1-
+install redux  
+---------------------npm install @reduxjs/toolkit react-redux
+install react toastify for messgage
+---------------------npm i react-toastify
+
+
+use rne  liye nhe wrapper ma add krenge 
+
+
+
+step2-
+redux  liye sbse phle 
+ek folder store name se iske andr ,
+----file store.js 
+----folder Reducers
+----folder Actions
+
+step3-
+toastify ka use krne k liye wrapper.js mai import krenge ------
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+  component ke and children k bd use krenge 
+   ---  <ToastContainer/>
+
+   step4-
+   configure store
+   inside store.js file copy configure store 
+   usage javascript code and paste inside store.js
+
+   ----------
+  import { configureStore } from '@reduxjs/toolkit'
+
+export const store = configureStore({
+  reducer: {},
+})
+----------------
+
+step5-quick start->Provide the Redux Store to React
+provide store and provider inside wrapper.js file 
+
+-----
+  import { store } from '@/store/store'
+  import { Provider } from 'react-redux'
+  -------
+
+  wrap app inside provider
+  ---------
+      <>
+    <Provider store={store}>
+     {children}
+     <ToastContainer/>
+     </Provider>
+    </>
+ -----------
+
+ After this wrapper show error 
+ use "use client " inside wrapper to remove the error
+
+
+
+
+
+***************
+Agr wrapper nhi bnate hai or wrapper ka sara kaam layout mI KRTE hai to layout bahut bhar jata or "use client" use krna pdta jisse sb client side render hota or ye bahut galat hai 
+********************
+
+############
+Ek extension install krna hai redux devtool chrome  extension  jo hmare redux ko debug krne k liye bahut useful hai 
+###############
+
+
+step6- Connect Backend
+
+--------Backend connect krne ke liye API ko connect krna hoga jisko krne k liye sbse phle 
+
+---npm i axios
+
+
+--axios ka use krne k liye 
+ek root label pr folder bnayenge 
+utils->axios.js
+
+isme ek axiios ka instance/object bnayenge
+
+------------
+import axios from "axios";
+
+const instance=axios.create({
+    baseURL:"http://localhost:8080/",
+    withCredentials:true             // use kiye  taki cookie save ho jaye
+})
+
+export default instance;
+--------------
+
+
+step7
+make file insde resuders folder
+studentReducer.js
+
+-------
+import { createSlice } from '@reduxjs/toolkit'
+
+const initialState = {
+}
+
+export const studentReducer = createSlice({
+  name: 'student',
+  initialState,
+  reducers: {
+   
+  },
+})
+
+export const {  } = studentReducer.actions
+
+export default studentReducer.reducer
+-------------
+
+
+import and provide  inside store.js
+
+
+=========
+make studentActions
+
+in this file contains all callback function 
+ye function api ko call krenge jiske liye hume axios ki need hogi 
+
+--import axios from utils
+--mport reducers from redducer
+import {addstudent,removestudent,iserror,removeerror} from "../Reducers/studentReducer";
+---make asynCurrentStudent function that function get api data 
+
+
+==========
+inside app .js file homepage  
+--import actions asynCurrentStudent
+
+make useEffect nsde that call action 
+action ko direct call nhi kr skte hai dispatch krte hai 
+call krne k liye useDispatch ka use krte hai 
+
+----------const dispatch= useDispatch()
+or useeffect mai function ko dispatch kr dete hai 
+
+******
+ const dispatch= useDispatch()
+useEffect(()=>{
+ dispatch(asynCurrentStudent())
+},[])
+********

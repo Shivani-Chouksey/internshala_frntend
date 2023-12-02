@@ -25,7 +25,6 @@
 // export default page;
 "use client";
 import { fetchCurrentStudent } from "@/store/Actions/studentActions";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -187,7 +186,7 @@ const Page = () => {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <>
                 <li className="nav-item mx-2">
-                  <Link className="btn btn-primary " href="/student">
+                  <Link className="btn btn-primary " href="/student/signup">
                     Register
                   </Link>
                 </li>
@@ -197,7 +196,8 @@ const Page = () => {
                 <Link
                   href="/employe"
                   className=" text-decoration-none border-start border-dark border-2 text-dark ps-4 fs-6 fw-bold"
-                 
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
                 >
                   Hire Talent
                 </Link>
@@ -216,32 +216,10 @@ const Page = () => {
         <h1 className="text-center fw-bold mt-5" style={{fontSize:"3.2vw"}}>
           Make your dream career a reality
         </h1>
-        <img
-              style={{ marginLeft: "770px" }}
-              src="https://internshala.com/static/images/registration/student_new/underline_d.svg"
-              alt=""
-            />
 
-        <div className="py-5">
-        <h3 className="fw-bolder text-center mt-2">
-          Trending on Internshala 🔥
-        </h3>
-
-        <div className="row">
-          <div className="col-4 rounded-4" style={{ overflow: "hidden" }}>
-            <Image
-              src={
-                "https://d3atms9ic4lahi.cloudfront.net/banner-images/home_new/pgc_banner-student.png.webp"
-              }
-              style={{ objectFit: "cover" }}
-              width={350}
-              height={250}
-            />
-          </div>
-        </div>
-      </div>
-        {/* <a href="/student">Student</a>
-        <a href="/employe">Employe</a> */}
+        <h3 className="text-center fw-bold mt-2">Trending on Internshala 🔥</h3>
+        <a href="/student">Student</a>
+        <a href="/employe">Employe</a>
       </div>
     </>
   );
